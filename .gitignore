@@ -1,0 +1,6 @@
+/LockApp/Debug/*
+/LockApp/LockApp/Debug/*
+/LockApp/LockApp.v12.suo
+*.opensdf
+*.sln
+*.sdf
