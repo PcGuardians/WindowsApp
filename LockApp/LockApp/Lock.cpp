@@ -6,11 +6,25 @@
 HANDLE InitComPort() {
 	HANDLE comPort;
 	DCB dcb;
+	// TODO 
+	LPCTSTR comPortName = L"COM5";
+	comPort = CreateFile(comPortName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (comPort == INVALID_HANDLE_VALUE) {
+		if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+			printf("COM port does not exists\n");
+		}
+		else {
+			printf("Error happenned: %l\n", GetLastError());
+		}
+		return NULL;
+	}
+	//SetupComm(comPort, 10, 128); @Deprecated 
 
-	comPort = CreateFile(L"COM3", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-	SetupComm(comPort, 10, 128);
+	if (!GetCommState(comPort, &dcb)) {
+		printf("Error while getting port state occured\n");
+		return NULL;
+	}
 
-	GetCommState(comPort, &dcb);
 	dcb.BaudRate = CBR_9600;
 	dcb.ByteSize = 8;
 	dcb.Parity = NOPARITY;
@@ -24,8 +38,13 @@ void main()
 {
 	// program initing
 	auto hCOM = InitComPort();
+	if (hCOM == NULL) {
+		printf("Some error occured, sorry, program will be closed");
+		_getch();
+		return;
+	}
 	auto myLocker = new Locker;
-	const int sizeOfBuffer = 5;
+	const int sizeOfBuffer = 128;
 	char lpBuffer[sizeOfBuffer] = { 0 };
 	DWORD dwRead = 0;
 
