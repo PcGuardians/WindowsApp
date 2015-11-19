@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0FCB8FFD-AA4F-4147-8EEF-0DB7345454D1}</ProjectGuid>
+    <ProjectGuid>{874C3DFD-C0CD-461C-AE28-245A702968A0}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>LockApp</RootNamespace>
@@ -69,8 +69,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="H:\Lock3\Lock3\Lock.cpp" />
-    <ClCompile Include="H:\Lock3\Lock3\Locker.cpp" />
+    <ClCompile Include="Lock.cpp" />
+    <ClCompile Include="Locker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Locker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

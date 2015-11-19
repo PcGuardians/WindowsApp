@@ -9,6 +9,6 @@ Locker::Locker() {
 Locker::~Locker() {
 }
 
-void Locker::lockPC() { 
+void Locker::lockPC() {
 	LockWorkStation();
 }
